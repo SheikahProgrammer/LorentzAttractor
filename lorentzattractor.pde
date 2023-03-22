@@ -28,6 +28,10 @@ void draw(){
   y = y+dy;
   z = z+dz;
   points.add(new PVector(x,y,z));
+
+   // set up auto-rotation
+  float autoRotateSpeed = 0.01;
+  rotateY(frameCount * autoRotateSpeed);
   translate(0,0,-300);
   scale(5);
   stroke(255);

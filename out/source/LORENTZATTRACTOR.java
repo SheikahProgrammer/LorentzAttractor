@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
 
-public class LORENTZATTRACTOR extends PApplet {
+public class lorentzattractor extends PApplet {
 
 
 PeasyCam cam;
@@ -24,7 +24,7 @@ float x = 0.01f;
 float y = 0.01f;
 float z = 0;
 
-
+//test
 float a = 10;
 float b = 28;
 float c = 8.0f/3.0f;
@@ -47,6 +47,10 @@ public void draw(){
   y = y+dy;
   z = z+dz;
   points.add(new PVector(x,y,z));
+
+   // set up auto-rotation
+  float autoRotateSpeed = 0.01f;
+  rotateY(frameCount * autoRotateSpeed);
   translate(0,0,-300);
   scale(5);
   stroke(255);
@@ -66,7 +70,7 @@ public void draw(){
   public void settings() { size(800, 600, P3D); }
 
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "LORENTZATTRACTOR" };
+    String[] appletArgs = new String[] { "lorentzattractor" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
