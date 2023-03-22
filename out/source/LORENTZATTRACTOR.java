@@ -25,11 +25,14 @@ float y = 0.01f;
 float z = 0;
 
 //test
-float a = 10;
+float a = 11;
 float b = 28;
 float c = 8.0f/3.0f;
 
 ArrayList<PVector> points = new ArrayList<PVector>(); 
+int maxPoints = 3000; // maximum number of points to keep
+float pointLifetime = 30.0f; // lifetime of a point in seconds
+float lastPointTime = 0.0f; // time when the last point was added
 
 public void setup(){
   /* size commented out by preprocessor */;
@@ -39,32 +42,43 @@ public void setup(){
 
 public void draw(){
   background(0);
-  float dt =0.01f;
+  float dt = 0.01f;
   float dx = a*(y - x)*dt;
   float dy = (x*(b - z)-y)*dt;
-  float dz =(x*y-c*z)*dt;
-  x = x+dx;
-  y = y+dy;
-  z = z+dz;
-  points.add(new PVector(x,y,z));
-
-   // set up auto-rotation
+  float dz = (x*y - c*z)*dt;
+  x += dx;
+  y += dy;
+  z += dz;
+  
+  // add a new point
+  points.add(new PVector(x, y, z));
+  
+  // remove old points
+  if (points.size() > maxPoints || (millis() - lastPointTime) / 1000.0f > pointLifetime) {
+    points.remove(0);
+  }
+  
+  // update last point time
+  lastPointTime = millis();
+  
+  // set up auto-rotation
   float autoRotateSpeed = 0.01f;
   rotateY(frameCount * autoRotateSpeed);
-  translate(0,0,-300);
+  
+  translate(0, 0, -300);
   scale(5);
   stroke(255);
   noFill();
   
   float hu = 0;
   beginShape();
-  for (PVector v: points){
+  for (PVector v : points) {
     stroke(hu % 255, 255, 255);
-    vertex(v.x,v.y,v.z);
+    vertex(v.x, v.y, v.z);
     hu++;
   }
   endShape();
-};
+}
 
 
   public void settings() { size(800, 600, P3D); }
