@@ -1,6 +1,9 @@
 # Lorentz Attractor
 
 This is a simple implementation of the Lorenz Attractor, a mathematical system that exhibits chaotic behavior. The implementation is written in Java using the Processing library.
+![lorentzattractor 2023-03-26 20-24-44](https://user-images.githubusercontent.com/128178419/227784273-debeb9e2-6424-4004-a8e8-c13e1c2ca6df.gif)
+
+
 
 ## Installation
 
